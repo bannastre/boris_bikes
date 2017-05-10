@@ -17,9 +17,16 @@ describe DockingStation  do
     end
   end
 
-  it 'Docks a bike' do
-    bike = Bike.new
-    expect(subject.dock_a_bike(bike)).to eq bike
+  describe '#dock_a_bike' do
+    it 'docks a bike if one is not present else returns an error' do
+      subject.dock_a_bike(Bike.new)
+      expect { subject.dock_a_bike(Bike.new).to raise_error("No space available")}
+    end
+
+    it 'Docks a bike' do
+      bike = Bike.new
+      expect(subject.dock_a_bike(bike)).to eq bike
+    end
   end
 
   it 'returns the docked bike' do
